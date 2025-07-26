@@ -65,7 +65,7 @@
 
 对于 `n=2` 的情况也采用类似的预判和处理，最终将问题都导向更易于优化的拓扑结构，并全局开启边翻转优化，使得最终的三角形尽可能正则。
 
-![优化策略-n=2](picture/picture/green_division2.png) ![优化策略-n=2](picture/red_green_division_pro_green_division2.png)
+![优化策略-n=2](picture/green_division2.png) ![优化策略-n=2](picture/red_green_division_pro_green_division2.png)
 
 ## 6. 结果展示与分析
 
@@ -107,6 +107,7 @@
     *可以看到，优化后的算法产生了更合理的度数分布，消灭了大量的高（>10）低（<5）度顶点，使大部分顶点度数集中在理想的5, 6, 7度。但代价是总点数有所增加。*
 
 *   **全局细分6次**
+
     ![全局细分对比](picture/red_green_division_pro_test2.png) ![全局细分对比](picture/red_green_division_test2.png) 
 
     *在全局细分这种理想情况下，优化算法（左）与原始算法（右）结果完全一致，证明了优化策略在不需要时不会引入任何不必要的点和面。*
@@ -114,6 +115,7 @@
 ### 6.3 三维模型对比
 
 *   **斯坦福兔子**
+
     ![兔子对比](picture/red_green_division_pro_test3.png) ![兔子对比](picture/red_green_division_test3.png)
 
     *在曲面模型上，优化算法（左）同样展现了更平滑的度数过渡和更好的网格结构。*
