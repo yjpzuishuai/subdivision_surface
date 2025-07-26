@@ -59,16 +59,13 @@
 ### 7.23 - 7.25：核心优化方案
 **问题来源：** 基础的红绿细分，尤其是在处理 `n=1` 的悬挂点时（如下图上半部分），通过连接对角顶点进行二分，很容易在钝角三角形中产生新的、角度更小的退化三角形。
 
-![原先策略-n=1](picture/green_division1.png)
-
-
 > **优化方案：** 当一个角（如上图红线要剖分的角）要被剖分时，我们预先判断剖分后产生的新角度。如果新角度小于阈值（29.5°），则认为此次剖分不合理。我们转而**引入该角对边（最长边）的中点**，这样原问题就强制转化为一个悬挂点数为2的情况来处理，可以利用更优的三角化策略。
 
 ![优化策略-n=1](picture/red_green_division_pro_green_division1.png)
 
 对于 `n=2` 的情况也采用类似的预判和处理，最终将问题都导向更易于优化的拓扑结构，并全局开启边翻转优化，使得最终的三角形尽可能正则。
 
-![优化策略-n=1](picture/picture/green_division2.png) ![优化策略-n=2](picture/red_green_division_pro_green_division2.png)
+![优化策略-n=2](picture/picture/green_division2.png) ![优化策略-n=2](picture/red_green_division_pro_green_division2.png)
 
 ## 6. 结果展示与分析
 
@@ -85,6 +82,7 @@
 *   **对比2**
 
     ![平面网格对比2](picture/red_green_division_pro_10times.png) ![平面网格对比2](picture/red_green_division_10times.png)
+
     *优化后的方法（左）生成的三角形很好地贴合了原始等腰直角网格的形状，边缘过渡地带的顶点度数也更均匀。原始方法（右）则产生了明显的扭曲和不规则性。*
 
 *   **对比3**
@@ -110,12 +108,14 @@
 
 *   **全局细分6次**
     ![全局细分对比](picture/red_green_division_pro_test2.png) ![全局细分对比](picture/red_green_division_test2.png) 
+
     *在全局细分这种理想情况下，优化算法（左）与原始算法（右）结果完全一致，证明了优化策略在不需要时不会引入任何不必要的点和面。*
 
 ### 6.3 三维模型对比
 
 *   **斯坦福兔子**
     ![兔子对比](picture/red_green_division_pro_test3.png) ![兔子对比](picture/red_green_division_test3.png)
+
     *在曲面模型上，优化算法（左）同样展现了更平滑的度数过渡和更好的网格结构。*
 
 ### 6.4 改进版蝴蝶细分 (Modified Butterfly) 结果
