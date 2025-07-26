@@ -68,8 +68,7 @@
 
 对于 `n=2` 的情况也采用类似的预判和处理，最终将问题都导向更易于优化的拓扑结构，并全局开启边翻转优化，使得最终的三角形尽可能正则。
 
-![优化策略-n=1](picture/picture/green_division2.png)
-![优化策略-n=2](picture/red_green_division_pro_green_division2.png)
+![优化策略-n=1](picture/picture/green_division2.png) ![优化策略-n=2](picture/red_green_division_pro_green_division2.png)
 
 ## 6. 结果展示与分析
 
@@ -77,18 +76,25 @@
 
 ### 6.1 平面网格的对比
 
-*   **初始对比**
+*   **对比1**
+
     ![平面网格对比1](picture/red_green_division_pro_4times.png)![平面网格对比1](picture/red_green_division_4times.png)
     
     *原始细分（右）产生了大量不规则、扭曲的三角形，且部分顶点度数过高。优化后（左）的网格则非常规整。*
 
-*   **优化效果展示**
-    ![平面网格对比2](path/to/your/plane_compare_2.png)
+*   **对比2**
+
+    ![平面网格对比2](picture/red_green_division_pro_10times.png) ![平面网格对比2](picture/red_green_division_10times.png)
     *优化后的方法（左）生成的三角形很好地贴合了原始等腰直角网格的形状，边缘过渡地带的顶点度数也更均匀。原始方法（右）则产生了明显的扭曲和不规则性。*
 
+*   **对比3**
+
+    ![平面网格对比3](picture/red_green_division_pro_test1.png) ![平面网格对比3](picture/red_green_division_test1.png) 
+    
+我认为优化后的红绿细分方法完全可以替代原来的红绿细分。局部细分比原来的好，全局细分也没有引入多余细分点。
 ### 6.2 顶点度数分布对比
 
-*   **平面细分10次**
+*   **平面细分10次（对比3中）**
     | Degree | Count (Optimized) | Count (Original) |
     |:------:|:-----------------:|:----------------:|
     |   10+  |        28         |       >500       |
@@ -103,23 +109,19 @@
     *可以看到，优化后的算法产生了更合理的度数分布，消灭了大量的高（>10）低（<5）度顶点，使大部分顶点度数集中在理想的5, 6, 7度。但代价是总点数有所增加。*
 
 *   **全局细分6次**
-    ![全局细分对比](path/to/your/global_compare.png)
+    ![全局细分对比](picture/red_green_division_pro_test2.png) ![全局细分对比](picture/red_green_division_test2.png) 
     *在全局细分这种理想情况下，优化算法（左）与原始算法（右）结果完全一致，证明了优化策略在不需要时不会引入任何不必要的点和面。*
 
 ### 6.3 三维模型对比
 
-*   **正方体**
-    ![正方体对比](path/to/your/cube_compare.png)
-    *优化算法（左）在处理边界和角点时，度数分布更均匀，总点数也更少，网格质量更高。*
-
 *   **斯坦福兔子**
-    ![兔子对比](path/to/your/bunny_compare.png)
+    ![兔子对比](picture/red_green_division_pro_test3.png) ![兔子对比](picture/red_green_division_test3.png)
     *在曲面模型上，优化算法（左）同样展现了更平滑的度数过渡和更好的网格结构。*
 
 ### 6.4 改进版蝴蝶细分 (Modified Butterfly) 结果
 实现了改进的蝴蝶细分算法。作为一种插值细分，它保留了原始顶点，没有进行平滑更新，因此能保持原表面的尖锐特征。
 
-![蝴蝶细分结果](path/to/your/butterfly_results.png)
+![蝴蝶细分结果](picture/butterfly_division_pro_test3.png)
 
 从度数统计来看，蝴蝶细分的结果并没有想象中惊艳，其度数分布略好于原始红绿细分，但远不如优化后的红绿细分算法。其在网格变形中的实际应用效果还有待进一步测试。
 
