@@ -59,12 +59,17 @@
 ### 7.23 - 7.25：核心优化方案
 **问题来源：** 基础的红绿细分，尤其是在处理 `n=1` 的悬挂点时（如下图上半部分），通过连接对角顶点进行二分，很容易在钝角三角形中产生新的、角度更小的退化三角形。
 
-![优化策略-n=1](picture/green_division1.png)
-*请将 `path/to/your/optimization_n1.png` 替换为你的图片实际路径*
+![原先策略-n=1](picture/green_division1.png)
+
 
 > **优化方案：** 当一个角（如上图红线要剖分的角）要被剖分时，我们预先判断剖分后产生的新角度。如果新角度小于阈值（29.5°），则认为此次剖分不合理。我们转而**引入该角对边（最长边）的中点**，这样原问题就强制转化为一个悬挂点数为2的情况来处理，可以利用更优的三角化策略。
 
+![优化策略-n=1](picture/red_green_division_pro_green_division1.png)
+
 对于 `n=2` 的情况也采用类似的预判和处理，最终将问题都导向更易于优化的拓扑结构，并全局开启边翻转优化，使得最终的三角形尽可能正则。
+
+![优化策略-n=1](picture/picture/green_division2.png)
+![优化策略-n=2](picture/red_green_division_pro_green_division2.png)
 
 ## 6. 结果展示与分析
 
@@ -73,7 +78,7 @@
 ### 6.1 平面网格的对比
 
 *   **初始对比**
-    ![平面网格对比1](path/to/your/plane_compare_1.png)
+    ![平面网格对比1](picture/red_green_division_pro_4times.png)![平面网格对比1](picture/red_green_division_4times.png)
     *原始细分（右）产生了大量不规则、扭曲的三角形，且部分顶点度数过高。优化后（左）的网格则非常规整。*
 
 *   **优化效果展示**
