@@ -79,6 +79,7 @@
 
 *   **初始对比**
     ![平面网格对比1](picture/red_green_division_pro_4times.png)![平面网格对比1](picture/red_green_division_4times.png)
+    
     *原始细分（右）产生了大量不规则、扭曲的三角形，且部分顶点度数过高。优化后（左）的网格则非常规整。*
 
 *   **优化效果展示**
