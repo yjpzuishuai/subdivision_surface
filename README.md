@@ -65,7 +65,7 @@
 
 对于 `n=2` 的情况也采用类似的预判和处理，最终将问题都导向更易于优化的拓扑结构，并全局开启边翻转优化，使得最终的三角形尽可能正则。
 
-![优化策略-n=2](picture/green_division2.png) ![优化策略-n=2](picture/red_green_division_pro_green_division2.png)
+ ![优化策略-n=2](picture/red_green_division_pro_green_division2.png) ![优化策略-n=2](picture/green_division2.png)
 
 ## 6. 结果展示与分析
 
